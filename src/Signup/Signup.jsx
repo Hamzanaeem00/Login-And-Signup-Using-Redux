@@ -1,49 +1,79 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import Login from "../Login/Login";
+import { createSignupData } from "../store/redux/SignupApi";
 // import axios from "axios";
 import './signup.css'
+ 
 
 const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [signupData, setSignupData] = useState([]);
+  const [data, setData] = useState({
+    name:"",
+    email:"",
+    password:"",
+  }); 
+  // console.log(signupData);
+  const disptach = useDispatch ()
 
-  console.log(name, email, password, signupData);
+  const  handleChange = (e)=>{
+    const value = e.target.value;
+    setData({
+      ...data,
+      [e.target.name]:value
+    });
+    
+  }
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleSignUpSubmit = (event) => {
+  const handleSignUpSubmit = async (event) => {
     event.preventDefault();
-    setSignupData([{ name, email, password }]);
-   
+    setSignupData([data]); 
+    if(!data.name || !data.email || !data.password){
+         alert("Please Fill All the Data")
+    }else{
+      createSignupData(disptach, signupData) 
+      console.log(signupData);
+      // alert("Signup Successfully")
+    }
+
+    
   };
   return (
     <div>
       <h4>Sign Up</h4>
-      <form className="form" onSubmit={handleSignUpSubmit}>
+      <form className="form"
+      //  onSubmit={handleSignUpSubmit}
+       >
         <label>Name</label>
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input type="text" 
+        name ='name'
+        value={data.name}
+        onChange = {handleChange}
+          />
         <label>Email</label>
-        <input type="email" value={email} onChange={handleEmailChange} />
+        <input type="email" name= 'email' value={data.email} 
+        onChange={handleChange} />
 
         <label>Password</label>
         <input
           type="password"
-          value={password}
-          onChange={handlePasswordChange}
+          name="password"
+          value={data.password}
+          onChange={handleChange}
         />
-        <button type="submit">Sign Up</button>
+        <button 
+        type="submit"
+         onClick={handleSignUpSubmit}>Sign Up</button>
       </form>
+
+      {
+        signupData >0 ?(
+        <div>
+          <Login />
+        </div>
+        ):""
+      }
     </div>
   );
 };

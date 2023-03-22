@@ -1,5 +1,4 @@
-import { Link, Route } from 'react-router-dom';
-import Signup from '../Signup/Signup';
+import { Link } from 'react-router-dom';
 const Landing = () => {
   return (
 
@@ -9,15 +8,13 @@ const Landing = () => {
           <h1>
             job <span>tracking</span> app
           </h1>
-
+          <Link to='/login' className='btn btn-hero'>
+            Login
+          </Link>
           <Link to='/register' className='btn btn-hero'>
-            Login/Register
+            /Register
           </Link>
         </div>
-
-        <Route exact path = '/register'>
-            <Signup />
-        </Route>
       </div>
   
   );

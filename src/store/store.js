@@ -3,8 +3,9 @@ import SignupReducer from "./reducer/SignupReducer";
 // import SignupReducer from "./reducer/SignupReducer"
 
 
-export default configureStore({
+export const  store =  configureStore({
+    
     reducer:{
-        Signup : SignupReducer
+        signup : SignupReducer
     }
 })
