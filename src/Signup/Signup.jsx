@@ -1,7 +1,8 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import Login from "../Login/Login";
+import {  useNavigate } from "react-router-dom";
+// import Login from "../Login/Login";
 import { createSignupData } from "../store/redux/SignupApi";
 // import axios from "axios";
 import './signup.css'
@@ -16,6 +17,7 @@ const Signup = () => {
   }); 
   // console.log(signupData);
   const disptach = useDispatch ()
+const navigate = useNavigate()
 
   const  handleChange = (e)=>{
     const value = e.target.value;
@@ -34,8 +36,13 @@ const Signup = () => {
     }else{
       createSignupData(disptach, signupData) 
       console.log(signupData);
+      if(signupData.length>0){
+        navigate(`/login`)
+      }
+        
       // alert("Signup Successfully")
     }
+
 
     
   };
@@ -67,13 +74,13 @@ const Signup = () => {
          onClick={handleSignUpSubmit}>Sign Up</button>
       </form>
 
-      {
+      {/* {
         signupData >0 ?(
         <div>
           <Login />
         </div>
         ):""
-      }
+      } */}
     </div>
   );
 };

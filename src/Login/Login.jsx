@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Welcome from '../welcomePage/Welcome';
 
 const Login = () => {
@@ -7,6 +8,8 @@ const Login = () => {
       email:"",
       password:""
     });
+const navigate = useNavigate()
+
     const dispatch = useDispatch()
     const loginData = useSelector((state)=> state.signup?.signup)
     console.log("loginData==>",loginData);
@@ -31,7 +34,6 @@ let signupData= []
         ...data,
         [event.target.name]: value
       })
-
     };
 
     useEffect(()=>{
@@ -44,13 +46,14 @@ let signupData= []
 
       if(finalData.email=== data.email && finalData.password=== data.password){
         console.log("loginSuccesfully");
-        return(
-          <div>
-            <Link to='/welcome' className='btn btn-hero'>
-            <Welcome />
-          </Link>
-          </div>
-        )
+        
+          // <div>
+          //   <Link to='/welcome' className='btn btn-hero'>
+          //   <Welcome />
+          // </Link>
+          // </div>
+          navigate(`/welcome`)
+        
       }else{
         console.log("login failed");
       }

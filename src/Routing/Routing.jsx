@@ -1,13 +1,14 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Landing from '../Landing/Landing'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
+import Welcome from '../welcomePage/Welcome'
 
 const Routing = () => {
   return (
     <div>
-        <Switch>
+        {/* <Switch>
          <Route exact path = '/'>
             <Landing />
         </Route>
@@ -17,7 +18,14 @@ const Routing = () => {
         <Route  path = '/login'>
             <Login />
         </Route>
-        </Switch>
+        </Switch> */}
+         <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/register" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/welcome" element={<Welcome />} />
+
+    </Routes>
       
     </div>
   )
