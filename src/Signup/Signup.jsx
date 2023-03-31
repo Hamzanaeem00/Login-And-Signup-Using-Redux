@@ -1,12 +1,9 @@
-// import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {  useNavigate } from "react-router-dom";
-// import Login from "../Login/Login";
 import { createSignupData } from "../store/redux/SignupApi";
-// import axios from "axios";
 import './signup.css'
- 
+ import Logo  from '../../src/assets/Logo 1.png'
 
 const Signup = () => {
   const [signupData, setSignupData] = useState([]);
@@ -47,40 +44,44 @@ const navigate = useNavigate()
     
   };
   return (
-    <div>
-      <h4>Sign Up</h4>
-      <form className="form"
-      //  onSubmit={handleSignUpSubmit}
+    <div className="signup-container">
+      <div className="signup-form">
+        <div className="logo">
+      <img src={Logo} alt="logo"  width="150px"/>
+        </div>
+      <h2 >Register</h2>
+      <form className=""
        >
+        <div className="form-group">
         <label>Name</label>
         <input type="text" 
+        placeholder="Enter Your Name"
         name ='name'
         value={data.name}
         onChange = {handleChange}
-          />
+        />
+        </div>
+        <div className="form-group">
         <label>Email</label>
         <input type="email" name= 'email' value={data.email} 
+        placeholder="Enter Your Email"
         onChange={handleChange} />
-
+        </div>
+        <div className="form-group">
         <label>Password</label>
         <input
           type="password"
           name="password"
+          placeholder="Enter Your Password"
           value={data.password}
           onChange={handleChange}
-        />
-        <button 
+          />
+          </div>
+        <button  className="button-85"
         type="submit"
-         onClick={handleSignUpSubmit}>Sign Up</button>
+         onClick={handleSignUpSubmit}>Submit</button>
       </form>
-
-      {/* {
-        signupData >0 ?(
-        <div>
-          <Login />
-        </div>
-        ):""
-      } */}
+      </div>
     </div>
   );
 };
