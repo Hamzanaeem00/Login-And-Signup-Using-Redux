@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import { createSignupData } from "../store/redux/SignupApi";
 import './signup.css'
  import Logo  from '../../src/assets/Logo 1.png'
@@ -36,8 +36,7 @@ const navigate = useNavigate()
       if(signupData.length>0){
         navigate(`/login`)
       }
-        
-      // alert("Signup Successfully")
+
     }
 
 
@@ -80,6 +79,9 @@ const navigate = useNavigate()
         <button  className="button-85"
         type="submit"
          onClick={handleSignUpSubmit}>Submit</button>
+         <p className="signup-member">
+          Already a member? <Link className="Login-link" to="/login">Login</Link>
+         </p>
       </form>
       </div>
     </div>

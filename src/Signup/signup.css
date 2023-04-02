@@ -1,5 +1,5 @@
 .signup-container {
-    /* background-image: url('https://img.freepik.com/free-photo/futuristic-metaverse-empty-room-product-display-presentation-abstract-technology-scifi-with-neon-light-3d-background_56104-2314.jpg?w=996&t=st=1680280177~exp=1680280777~hmac=759ed74c7d19ae7b51d0b6c15b9bd2b1f2de86c41059e4002fbace77e29e59b6'); */
+    /* background-image: url('https:/   /img.freepik.com/free-photo/futuristic-metaverse-empty-room-product-display-presentation-abstract-technology-scifi-with-neon-light-3d-background_56104-2314.jpg?w=996&t=st=1680280177~exp=1680280777~hmac=759ed74c7d19ae7b51d0b6c15b9bd2b1f2de86c41059e4002fbace77e29e59b6'); */
     background-size: cover;
     background-position: center center;
     height: 94vh;
@@ -12,7 +12,7 @@
     border-top: #3b82f6 5px solid;
     max-width: 400px;
     /* padding: 60px 82px 60px 60px; */
-    padding: 2rem 4.5rem 2rem 2.5rem;
+    padding: 2rem 3rem 2rem 2.5rem;
     background: #fff;
     border-radius: 0.25rem;
     box-shadow:   0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);;
@@ -57,10 +57,9 @@
     font-size: 14px;
     color: #222;
     border: #bcccdc 1px solid;
-    /* background-color: #f8f8f8; */
     background-color: #f0f4f8;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    /* transition: all 0.3s ease; */
+    border-radius: 0.25rem;
+
   }
   
   .signup-form input:focus {
@@ -72,7 +71,7 @@
   .signup-form button {
     margin-top: 15px ;
     display: block;
-    width: 111%;
+    /* width: 111%; */
     background-color: #3b82f6;
     color: #fff;
     border: none;
@@ -89,5 +88,11 @@
     background-color: #0e67f5;
   }
 
-
+.signup-member{
+    text-align: center;
+}
+.Login-link{
+    text-decoration: none;
+    color: #0e67f5;
+}
  
