@@ -26,3 +26,6 @@ p{
     transition: all .3s ease-in-out;
     transition: var(--transition);
 }
+.btnn:hover {
+    background-color: #0e67f5;
+  }

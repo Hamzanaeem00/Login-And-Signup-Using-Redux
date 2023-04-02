@@ -1,19 +1,40 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {  Link, useNavigate } from "react-router-dom";
 import { createSignupData } from "../store/redux/SignupApi";
 import './signup.css'
  import Logo  from '../../src/assets/Logo 1.png'
+import { toast } from "react-toastify";
 
 const Signup = () => {
+  const loginData = useSelector((state)=> state.signup?.signup)
+  console.log("loginData==>", loginData);
+
+
+  let globalData = []
+    loginData.forEach((item)=>{
+      console.log(item);
+      globalData= item.payload
+    })
+    // console.log(signupData);
+    let finalData =[]
+    globalData.forEach((item)=>{
+      console.log(item);
+     finalData = item
+    })
+    console.log(finalData);
+
+
   const [signupData, setSignupData] = useState([]);
   const [data, setData] = useState({
     name:"",
     email:"",
     password:"",
   }); 
-  // console.log(signupData);
+  const [isMember, setIsMember]= useState(false)
+
   const disptach = useDispatch ()
+
 const navigate = useNavigate()
 
   const  handleChange = (e)=>{
@@ -24,24 +45,53 @@ const navigate = useNavigate()
     });
     
   }
+  const handleLogin= ()=>{
+    setIsMember(true)
+  }
+  const handleSignup= ()=>{
+    setIsMember(false)
+
+
+  }
+
 
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     setSignupData([data]); 
     if(!data.name || !data.email || !data.password){
-         alert("Please Fill All the Data")
+        //  alert("Please Fill All the Data")
+         toast.warn("Please Fill Out All Fields")
     }else{
       createSignupData(disptach, signupData) 
       console.log(signupData);
       if(signupData.length>0){
-        navigate(`/login`)
+        // navigate(`/login`)
+        setIsMember(true)
+         setData( {name:"",
+         email:"",
+         password:""})
+        
       }
 
     }
-
-
     
   };
+
+  const handleLoginSubmit = (event)=>{
+    event.preventDefault();
+    if(finalData.email=== data.email && finalData.password=== data.password){
+      console.log("loginSuccesfully");
+        navigate(`/welcome`)
+    }else{
+      
+      console.log("login failed");
+      toast.error("Login Failed");
+    }
+    // console.log("clicked");
+  };
+
+  
+
   return (
     <div className="signup-container">
       <div className="signup-form">
@@ -51,15 +101,19 @@ const navigate = useNavigate()
       <h2 >Register</h2>
       <form className=""
        >
-        <div className="form-group">
-        <label>Name</label>
-        <input type="text" 
-        placeholder="Enter Your Name"
-        name ='name'
-        value={data.name}
-        onChange = {handleChange}
-        />
-        </div>
+        { !isMember? (
+          <div className="form-group">
+          <label>Name</label>
+          <input type="text" 
+          placeholder="Enter Your Name"
+          name ='name'
+          value={data.name}
+          onChange = {handleChange}
+          />
+          </div>
+        ):""
+        }
+        
         <div className="form-group">
         <label>Email</label>
         <input type="email" name= 'email' value={data.email} 
@@ -76,12 +130,40 @@ const navigate = useNavigate()
           onChange={handleChange}
           />
           </div>
-        <button  className="button-85"
-        type="submit"
-         onClick={handleSignUpSubmit}>Submit</button>
+          {!isMember?(
+             <button  className="button-85"
+             type="submit"
+              onClick={handleSignUpSubmit}>Submit</button>
+          ):(
+            <button  className="button-85"
+            type="submit"
+             onClick={handleLoginSubmit}>Login</button>
+          )}
+       
+
+         {/* Navigate to Login Page */}
+
+          {/* <p className="signup-member">
+          Already a member? <Link onClick={handleLogin} className="Login-link" 
+          to="/login"
+          >Login</Link>
+         </p> */}
+
+
+         {
+         !isMember? (
          <p className="signup-member">
-          Already a member? <Link className="Login-link" to="/login">Login</Link>
+          Already a member? <Link onClick={handleLogin} className="Login-link" 
+          >Login</Link>
          </p>
+         ):(
+          <p className="signup-member">
+          Not a member yet? <Link onClick={handleSignup} className="Login-link" 
+          >Register</Link>
+         </p>
+         )
+         
+             }
       </form>
       </div>
     </div>
