@@ -70,8 +70,9 @@ const navigate = useNavigate()
          setData( {name:"",
          email:"",
          password:""})
-        
+         toast.success("Submitted Successfully")
       }
+
 
     }
     
@@ -81,6 +82,8 @@ const navigate = useNavigate()
     event.preventDefault();
     if(finalData.email=== data.email && finalData.password=== data.password){
       console.log("loginSuccesfully");
+      toast.success("Login Successfully")
+
         navigate(`/welcome`)
     }else{
       
